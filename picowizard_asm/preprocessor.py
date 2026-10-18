@@ -90,6 +90,8 @@ class Preprocessor:
             # Only handle #something
             elif token.type == "DIRECTIVE" and token.value == "#define":
                 self.gather_macro()
+            elif token.type == "DIRECTIVE" and token.value == "#macro":
+                self.gather_block_macro(token)
             else:
                 output.append(token)
         
@@ -281,6 +283,7 @@ class Preprocessor:
 
                 message = " ".join(parts) if parts else "#error"
                 assembly_error(token, message)
+            
 
             # If in ignored part of the code
             if code_disable:
@@ -398,6 +401,39 @@ class Preprocessor:
         # Pop from include stack
         self.include_stack.pop()
         return output_tokens
+
+    def gather_block_macro(self, directive):
+        name = self.consumer.consume("IDENT", "macro name")
+
+        arguments = None
+        token = self.consumer.consume()
+
+        # Optional argument list
+        if token is not None and token.type == "LPAREN":
+            arguments = self.consumer.consume_list(["RPAREN"])
+            token = self.consumer.consume()
+
+        # Header must end the line
+        if token is None or token.type != "NEWLINE":
+            assembly_error(token or name, "Expected end of line after macro header")
+
+        values = []
+        while True:
+            token = self.consumer.consume()
+
+            if token is None:
+                assembly_error(directive, "Unclosed #macro, expected #endmacro")
+
+            if token.type == "DIRECTIVE" and token.value == "#endmacro":
+                self.consumer.consume_line()
+                break
+
+            values.append(token)
+
+        if name.value in self.macros:
+            assembly_error(name, "Redefinition of macro")
+
+        self.macros[name.value] = Macro(name, arguments, values)
 
     def add_definition(self, name: str, value=None):
         source = "<assembler definition>"
