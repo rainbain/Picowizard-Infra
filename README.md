@@ -6,4 +6,5 @@ This project currently includes:
 
 
 Currently Supported ISA Versions:
- - 1.3
+ - 1.2
+ - 1.2 Plus
