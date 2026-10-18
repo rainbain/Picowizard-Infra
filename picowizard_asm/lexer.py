@@ -6,6 +6,7 @@ Converts text into discretized tokens for easy processing.
 Author: Samuel Fitzsimons (rainbain)
 File: lexer.py
 Date: 2026
+License: GPLv2 (See included license file)
 """
 
 import re

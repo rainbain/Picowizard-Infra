@@ -5,6 +5,7 @@
  * Auther: Samuel Fitzsimons (rainbain)
  * File: test.S
  * Data: 2026
+ * License: Unlicensed to support copying.
 */
 
 #if PICOWIZARD_ISA_VERSION != 120

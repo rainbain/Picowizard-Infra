@@ -8,6 +8,7 @@ The program will still have to be linked, but contains the actual program data.
 Author: Samuel Fitzsimons (rainbain)
 File: parser.py
 Date: 2026
+License: GPLv2 (See included license file)
 """
 
 from utils import TokenConsumer, assembly_error, evaluate_expression, name_token

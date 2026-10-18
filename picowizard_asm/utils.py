@@ -7,6 +7,7 @@ for the assembler.
 Author: Samuel Fitzsimons (rainbain)
 File: utils.py
 Date: 2026
+License: GPLv2 (See included license file)
 """
 
 from lexer import Token

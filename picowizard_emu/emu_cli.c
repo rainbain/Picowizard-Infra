@@ -1,3 +1,12 @@
+/* Picowizard Emulator Client
+ *
+ * Command line interface
+ *
+ * Auther: Samuel Fitzsimons (rainbain)
+ * File: emu_cli.c
+ * Data: 2026
+ * License: GPLv2 (See included license file)
+*/
 
 #include <stdio.h>
 #include <stdlib.h>

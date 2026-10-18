@@ -10,6 +10,7 @@ in many compilers.
 Author: Samuel Fitzsimons (rainbain)
 File: preprocessor.py
 Date: 2026
+License: GPLv2 (See included license file)
 """
 
 from lexer import lex

@@ -6,6 +6,7 @@ Defines the Instruction Set Architecture of the DSP.
 Author: Samuel Fitzsimons (rainbain)
 File: isa.py
 Date: 2026
+License: GPLv2 (See included license file)
 """
 
 from utils import TokenConsumer, assembly_error, name_token

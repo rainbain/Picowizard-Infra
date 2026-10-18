@@ -7,6 +7,7 @@ on-top of the assembler.
 Author: Samuel Fitzsimons (rainbain)
 File: dspasm_cli.py
 Date: 2026
+License: GPLv2 (See included license file)
 """
 
 import argparse
