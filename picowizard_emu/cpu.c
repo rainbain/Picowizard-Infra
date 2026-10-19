@@ -103,18 +103,18 @@ static int cpu_op_biz(void* cpu_v, uint8_t opcode) {
         return 1;
 
     // Set new PC
+    uint16_t ret = cpu->ctr + 1;
     uint16_t seg = (uint16_t)cpu->gpr[3] << 8;
     cpu->ctr = seg | cpu->gpr[imm1];
+
+    cpu->gpr[2] = ret & 0xFF;  // C   = low byte
+    cpu->gpr[3] = ret >> 8;    // SEG = high byte
     return 0;
 }
 
 static int cpu_op_jmp(void* cpu_v, uint8_t opcode) {
     OPCODE_PREAMBLE_IMM2();
     uint16_t target = ((uint16_t)cpu->gpr[imm0] << 8) | cpu->gpr[imm1];
-    uint16_t ret = cpu->ctr + 1;
-
-    cpu->gpr[2] = ret & 0xFF;  // C   = low byte
-    cpu->gpr[3] = ret >> 8;    // SEG = high byte
     cpu->ctr = target;
     return 0;
 }
